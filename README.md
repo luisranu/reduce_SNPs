@@ -7,10 +7,10 @@ A simple Bash script to filter biallelic SNPs from a VCF file by removing nearby
 The script performs the following steps:
 
 1. **SNP Selection**: Retains only biallelic SNPs (those with a single ALT allele).
-2. **Redundancy Filtering**: Compares the genotype (GT) string of each SNP with the three previously selected SNPs. If an exact match is found, the SNP is excluded.
-3. **Distance & Frequency Filtering**:
+2. **Redundancy Filtering**: Compares the genotype (GT) string of each SNP with the two previously selected SNPs. If an exact match is found, the SNP is excluded.
+3. **Distance & Frequency Filtering** (Optional):
    - If the distance to the last selected SNP is **greater than** the specified threshold (`-d`), the SNP is included.
-   - If the distance is **less than or equal to** the threshold, the SNP is included **only if** its allele frequency differs from each of the three previous SNPs by at least the specified frequency threshold (`-f`).
+   - If the distance is **less than or equal to** the threshold, the SNP is included **only if** its allele frequency differs from each of the two previous SNPs by at least the specified frequency threshold (`-f`).
 
 > **Note**: By default, both `-d` and `-f` are set to `0`, meaning all SNPs are compared regardless of distance, and **any** allele frequency difference is considered.
 
@@ -56,7 +56,7 @@ bash reduce_SNPs.sh -i input.vcf.gz -o filtered.vcf.gz -d 1000 -f 0.05
 ### Example logic:
 With a distance threshold of 1000 nucleotides (`-d 1000`) and a frequency threshold of 0.05 (`-f 0.05`), a new **non redundant** SNP will be included if:
 - It is **more than 1000 nucleotides** away from the last selected SNP, **or**
-- It is within 1000 nucleotides but its allele frequency differs by at least 0.05 from **each** of the last three selected SNPs.
+- It is within 1000 nucleotides but its allele frequency differs by at least 0.05 from **each** of the last two selected SNPs.
 
 ## 🎯 Why Reduce SNPs?
 
