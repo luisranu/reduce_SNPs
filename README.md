@@ -1,6 +1,6 @@
 # 🧬 reduce_SNPs.sh
 
-A simple Bash script to filter biallelic SNPs from a VCF file by removing nearby variants that carry redundant information. Optionally, the user can define a distance (in base pairs) and a minimum 
+A simple Bash script to filter biallelic SNPs from a VCF file by removing nearby variants that carry redundant information. Optionally, the user can define a threshold distance (in base pairs) and a threshold for allele frequency difference to retain only representative SNPs. This helps reduce redundancy and computational burden in large-scale genetic studies.
 
 ## 📄 Description
 
